@@ -1,7 +1,7 @@
 import React from "react";
 import { CaloriesIntakeDetails } from ".";
 
-export function Body() {
+export function PageBody() {
   return (
     <div>
       <div
