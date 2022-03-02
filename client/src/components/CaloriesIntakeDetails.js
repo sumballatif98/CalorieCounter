@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./caloriesIntakeDetails.module.css";
 
 export function CaloriesIntakeDetails() {
   return (
@@ -6,18 +7,15 @@ export function CaloriesIntakeDetails() {
       <div className=" col-8">
         <div className="  p-4 ">
           <div className=" d-flex align-items-end gap-3">
-            <p className="fs-1 fw-bold " style={{ color: "yellowgreen" }}>
-              950
-            </p>
+            <p className={`fs-1 fw-bold ${styles.textColor}`}>950</p>
             <p className="text-uppercase fw-bold pb-2">
               Calories consumed today
             </p>
           </div>
           <div className="progress ">
             <div
-              className=" progress-bar"
+              className={`progress-bar ${styles.progressbar} ${styles.backgroundColor}`}
               role="progressbar"
-              style={{ width: "70%", backgroundColor: "yellowgreen" }}
               aria-valuenow="70"
               aria-valuemin="0"
               aria-valuemax="100"
