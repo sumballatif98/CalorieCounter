@@ -1,9 +1,9 @@
 import React from "react";
-import { CaloriesIntakeDetails } from ".";
+import { CaloriesIntakeDetails, DailyNutrition } from ".";
 
 export function PageBody() {
   return (
-    <div>
+    <div className="d-flex px-4 gap-5 justify-content-center align-items-start ">
       <div
         className=" col-8 "
         style={{
@@ -13,6 +13,9 @@ export function PageBody() {
         }}
       >
         <CaloriesIntakeDetails />
+      </div>
+      <div className=" col-4 ">
+        <DailyNutrition />
       </div>
     </div>
   );
