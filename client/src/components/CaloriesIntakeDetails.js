@@ -1,9 +1,10 @@
 import React from "react";
+import { MdOutlineInfo } from "react-icons/md";
 import styles from "./caloriesIntakeDetails.module.css";
 
 export function CaloriesIntakeDetails() {
   return (
-    <div className="row ">
+    <div className="row gx-0 ">
       <div className=" col-8">
         <div className="  p-4 ">
           <div className=" d-flex align-items-end gap-3">
@@ -35,8 +36,13 @@ export function CaloriesIntakeDetails() {
         </div>
       </div>
 
-      <div className=" col-4 px-5">
+      <div className=" col-4 px-5 position-relative">
         <CaloriesLeft />
+        <div
+          className={`position-absolute top-0 end-0 pe-2 ${styles.iconColor} `}
+        >
+          <MdOutlineInfo />
+        </div>
       </div>
     </div>
   );
@@ -44,7 +50,7 @@ export function CaloriesIntakeDetails() {
 
 function CaloriesLeft() {
   return (
-    <div className="d-flex align-items-center h-100 mx-2">
+    <div className="d-flex align-items-center justify-content-center h-100 mx-2">
       <div className=" d-flex flex-column align-items-center justify-content-center rounded-circle bg-white h-75 w-75 ">
         <div className=" fs-1 fw-bold ">650</div>
         <div className=" fs-6 fw-bold  text-uppercase">Calories</div>
