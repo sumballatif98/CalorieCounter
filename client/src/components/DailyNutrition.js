@@ -93,7 +93,7 @@ function NutritionProgress({ nutrition }) {
   const width = consumedPercentage + "%";
   return (
     <div>
-      <div className="py-1 ">
+      <div className=" pt-2 ">
         <div className=" d-flex justify-content-between ">
           <b>{nutrition.name}</b>
           <div className=" text-black-50">
