@@ -1,14 +1,35 @@
-const http = require('http');
+// const http = require('http');
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const app = express();
 
-const hostname = '127.0.0.1';
-const port = 3000;
+const routes = require("./api/routes/calorieCounterRoutes");
+// app.use(bodyParser.urlencoded({ extended: true }));
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
+//db connection
+mongoose.Promise = global.Promise;
+const url = "mongodb://localhost:27017/calorieCounter";
+mongoose.connect(url).then(
+  () => {
+    console.log("Database is connected");
+  },
+  (err) => {
+    console.log("Cannot connect to the database " + err);
+  }
+);
+
+app.use(bodyParser.json());
+app.use(cors());
+
+app.use("/caloriecounter", routes);
+app.use("/", (req, res) => {
+  res.send("Server Running");
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+const port = process.env.PORT || 3500;
+
+app.listen(port, function () {
+  console.log("Listening on port " + port);
 });
