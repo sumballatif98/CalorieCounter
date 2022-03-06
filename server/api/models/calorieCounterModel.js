@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const dailyCalories = new mongoose.Schema({
+  uuid: {
+    type: String,
+    required: true,
+  },
   date: {
     type: String,
   },
@@ -17,6 +21,24 @@ const dailyCalories = new mongoose.Schema({
     },
   },
   food: [
+    // {
+    //   breakfast: {
+    //     name: {
+    //       type: String,
+    //     },
+    //     calories: {
+    //       type: Number,
+    //     },
+    //   },
+    //   amSnack: {
+    //     name: {
+    //       type: String,
+    //     },
+    //     calories: {
+    //       type: Number,
+    //     },
+    //   },
+    // },
     {
       name: {
         type: String,
