@@ -21,24 +21,6 @@ const dailyCalories = new mongoose.Schema({
     },
   },
   food: [
-    // {
-    //   breakfast: {
-    //     name: {
-    //       type: String,
-    //     },
-    //     calories: {
-    //       type: Number,
-    //     },
-    //   },
-    //   amSnack: {
-    //     name: {
-    //       type: String,
-    //     },
-    //     calories: {
-    //       type: Number,
-    //     },
-    //   },
-    // },
     {
       name: {
         type: String,

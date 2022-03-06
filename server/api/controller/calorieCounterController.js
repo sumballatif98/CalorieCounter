@@ -1,7 +1,6 @@
 let calories = require("../models/calorieCounterModel");
 
 const addFood = function (req, res) {
-  console.log(req.body);
   const request = req.body;
   calories.findOneAndUpdate(
     { date: request.date, uuid: request.uuid },
@@ -12,7 +11,6 @@ const addFood = function (req, res) {
     { upsert: true, new: true },
     function (err, doc) {
       if (err) {
-        console.log(err);
         res.send(err);
       } else {
         res.send(doc);
@@ -22,7 +20,6 @@ const addFood = function (req, res) {
 };
 
 const addExercise = function (req, res) {
-  console.log(req.body);
   const request = req.body;
   calories.findOneAndUpdate(
     { date: request.date, uuid: request.uuid },
@@ -33,7 +30,6 @@ const addExercise = function (req, res) {
     { upsert: true, new: true },
     function (err, doc) {
       if (err) {
-        console.log(err);
         res.send(err);
       } else {
         res.send(doc);
@@ -43,15 +39,12 @@ const addExercise = function (req, res) {
 };
 
 const getFood = function (req, res) {
-  console.log(req.query);
   calories.findOne(
     { date: req.query.date, uuid: req.query.uuid },
     function (err, doc) {
       if (err) {
-        console.log(err);
         res.send(err);
       } else {
-        console.log(doc);
         res.send(doc);
       }
     }
@@ -59,9 +52,7 @@ const getFood = function (req, res) {
 };
 
 const addGoal = function (req, res) {
-  console.log(req.body);
   const request = req.body;
-  // res.send("added");
   calories.findOneAndUpdate(
     { date: request.date, uuid: request.uuid },
     {
@@ -70,7 +61,6 @@ const addGoal = function (req, res) {
     { upsert: true, new: true },
     function (err, doc) {
       if (err) {
-        console.log(err);
         res.send(err);
       } else {
         res.send(doc);

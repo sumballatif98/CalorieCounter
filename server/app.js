@@ -1,4 +1,3 @@
-// const http = require('http');
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -6,9 +5,7 @@ const cors = require("cors");
 const app = express();
 
 const routes = require("./api/routes/calorieCounterRoutes");
-// app.use(bodyParser.urlencoded({ extended: true }));
 
-//db connection
 mongoose.Promise = global.Promise;
 const url = "mongodb://localhost:27017/calorieCounter";
 mongoose.connect(url).then(
