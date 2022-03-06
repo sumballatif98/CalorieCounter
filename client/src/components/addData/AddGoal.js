@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { addGoal } from "../utils";
+import { SaveData } from "./SaveData";
 
-export function AddGoal({ setRemainingCalories }) {
+export function AddGoal({ setFoodDetails, date, setFormToShow }) {
   const [goal, setGoal] = useState("");
 
   function isEmpty(value) {
@@ -10,12 +11,11 @@ export function AddGoal({ setRemainingCalories }) {
 
   function handleSave() {
     if (!isEmpty(goal)) {
-      const response = addGoal(goal);
-      // console.log(response);
+      console.log(new Date(date).toDateString());
+      const response = addGoal(goal, new Date(date).toDateString());
       response
         .then((data) => {
-          console.log(data);
-          setRemainingCalories(data.calories.target - data.calories.consumed);
+          setFoodDetails(data);
           setGoal("");
         })
         .catch(console.error());
@@ -37,15 +37,7 @@ export function AddGoal({ setRemainingCalories }) {
           setGoal(event.target.value);
         }}
       />
-      <button
-        type="button"
-        className="btn btn-success mt-3"
-        onClick={() => {
-          handleSave();
-        }}
-      >
-        Save
-      </button>
+      <SaveData handleSave={handleSave} setFormToShow={setFormToShow} />
     </div>
   );
 }

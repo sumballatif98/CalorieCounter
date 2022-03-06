@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { saveExercise } from "../utils";
+import { SaveData } from "./SaveData";
 
-export function AddExercise({ setConsumedCalories, setRemainingCalories }) {
+export function AddExercise({ setFoodDetails, date, setFormToShow }) {
   const [exercise, setExercise] = useState("");
   const [calories, setCalories] = useState("");
 
@@ -11,11 +12,14 @@ export function AddExercise({ setConsumedCalories, setRemainingCalories }) {
 
   function handleSave() {
     if (!isEmpty(exercise) && !isEmpty(calories)) {
-      const response = saveExercise(exercise, calories);
+      const response = saveExercise(
+        exercise,
+        calories,
+        new Date(date).toDateString()
+      );
       response
         .then((data) => {
-          setConsumedCalories(data.calories.consumed);
-          setRemainingCalories(data.calories.target - data.calories.consumed);
+          setFoodDetails(data);
           setExercise("");
           setCalories("");
         })
@@ -27,22 +31,18 @@ export function AddExercise({ setConsumedCalories, setRemainingCalories }) {
   return (
     <div className=" bg-white p-2 rounded-3">
       <div className=" d-flex gap-3 ">
-        <TextField label={"Title"} value={exercise} setValue={setExercise} />
         <TextField
-          label={"Calories burnt"}
+          label={"Exercise Name"}
+          value={exercise}
+          setValue={setExercise}
+        />
+        <TextField
+          label={"Calories Burnt"}
           value={calories}
           setValue={setCalories}
         />
       </div>
-      <button
-        type="button"
-        className="btn btn-success mt-3"
-        onClick={() => {
-          handleSave();
-        }}
-      >
-        Save
-      </button>
+      <SaveData handleSave={handleSave} setFormToShow={setFormToShow} />
     </div>
   );
 }

@@ -1,26 +1,29 @@
-import React, { useState } from "react";
-import { CaloriesIntakeDetails, DailyNutrition, FoodDetails } from ".";
+import React, { useState, useEffect } from "react";
+import { CaloriesIntakeDetails, FoodDetails } from ".";
+import { getFood } from "./utils";
 
-export function PageBody() {
+export function PageBody({ date }) {
+  const [foodDetails, setFoodDetails] = useState({});
+
+  useEffect(() => {
+    const food = getFood(new Date(date).toDateString());
+    food.then((data) => {
+      setFoodDetails(data);
+    });
+  }, [date]);
+
   return (
-    <div className="d-flex px-4 gap-5 justify-content-center align-items-start ">
-      <div className="col-12">
-        <div
-          style={{
-            background:
-              "linear-gradient(130deg, #D8E7E5 4%, #F0F8F7 7%, #F0F8F7 60%, #CCD9D7, #F0F8F7)",
-          }}
-        >
-          <CaloriesIntakeDetails />
-        </div>
+    <div className="col-12">
+      <div>
+        <CaloriesIntakeDetails
+          date={date}
+          foodDetails={foodDetails}
+          setFoodDetails={setFoodDetails}
+        />
         <div className=" mt-3">
-          <FoodDetails />
+          <FoodDetails foodDetails={foodDetails} />
         </div>
       </div>
-
-      {/* <div className=" col-4 ">
-        <DailyNutrition />
-      </div> */}
     </div>
   );
 }

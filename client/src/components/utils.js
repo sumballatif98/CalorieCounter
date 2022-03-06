@@ -3,49 +3,42 @@ import { v4 as uuidv4 } from "uuid";
 
 const baseURL = "http://localhost:3500/caloriecounter";
 
-export async function saveFood(title, calories) {
-  const foodDate = new Date().toDateString();
+export async function saveFood(title, calories, date) {
   const request = {
     uuid: getUUID(),
-    date: foodDate,
+    date: date,
     food: { name: title, calories: calories },
   };
   const response = await axios.post(`${baseURL}/addFood`, request);
-  // console.log(reponse.data);
   return response.data;
 }
 
-export async function saveExercise(title, calories) {
-  const foodDate = new Date().toDateString();
+export async function saveExercise(title, calories, date) {
   const request = {
     uuid: getUUID(),
-    date: foodDate,
+    date: date,
     exercise: { name: title, caloriesBurnt: calories },
   };
   const response = await axios.post(`${baseURL}/addExercise`, request);
-  // console.log(reponse.data);
   return response.data;
 }
 
-export async function getFood() {
-  const foodDate = new Date().toDateString();
+export async function getFood(date) {
   const params = {
     uuid: getUUID(),
-    date: foodDate,
+    date: date,
   };
   const response = await axios.get(`${baseURL}/getFood`, { params });
   return response.data;
 }
 
-export async function addGoal(goalCalories) {
-  const foodDate = new Date().toDateString();
+export async function addGoal(goalCalories, date) {
   const request = {
     uuid: getUUID(),
-    date: foodDate,
+    date: date,
     goal: goalCalories,
   };
   const response = await axios.post(`${baseURL}/addGoal`, request);
-  // console.log(response.data);
   return response.data;
 }
 
