@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { CaloriesIntakeDetails, FoodDetails } from ".";
+import { CaloriesIntakeDetails, FoodAndExerciseDetails } from ".";
 import { getFood } from "./utils";
 
 export function PageBody({ date }) {
@@ -21,7 +21,10 @@ export function PageBody({ date }) {
           setFoodDetails={setFoodDetails}
         />
         <div className=" mt-3">
-          <FoodDetails foodDetails={foodDetails} />
+          <FoodAndExerciseDetails foodDetails={foodDetails} text={"food"} />
+        </div>
+        <div className=" mt-3">
+          <FoodAndExerciseDetails foodDetails={foodDetails} text={"exercise"} />
         </div>
       </div>
     </div>
